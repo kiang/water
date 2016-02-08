@@ -27,7 +27,6 @@ if (!isset($url)) {
                 <th><?php echo $this->Paginator->sort('Point.address', 'address', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.latitude', 'latitude', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.longitude', 'longitude', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.comment', 'comment', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.created', 'created', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.modified', 'modified', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
@@ -66,9 +65,6 @@ if (!isset($url)) {
                         ?></td>
                     <td><?php
                         echo $item['Point']['longitude'];
-                        ?></td>
-                    <td><?php
-                        echo $item['Point']['comment'];
                         ?></td>
                     <td><?php
                         echo $item['Point']['created'];

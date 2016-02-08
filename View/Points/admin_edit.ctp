@@ -7,6 +7,12 @@
                 ?></legend>
             <?php
             echo $this->Form->input('Point.id');
+            echo $this->Form->input('Point.member_id', array(
+                'type' => 'text',
+                'label' => 'member_id',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             echo $this->Form->input('Point.status', array(
                 'label' => 'status',
                 'div' => 'form-group',
@@ -31,16 +37,6 @@
                 'rows' => '5',
                 'cols' => '',
                 'label' => 'comment',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
-            echo $this->Form->input('Point.created', array(
-                'label' => 'created',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
-            echo $this->Form->input('Point.modified', array(
-                'label' => 'modified',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));

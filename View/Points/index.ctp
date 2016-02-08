@@ -39,6 +39,9 @@
                 <tr<?php echo $class; ?>>
 
                     <td><?php
+                        echo $item['Point']['member_id'];
+                        ?></td>
+                    <td><?php
                         echo $item['Point']['status'];
                         ?></td>
                     <td><?php
