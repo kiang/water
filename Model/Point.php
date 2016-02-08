@@ -50,8 +50,11 @@ class Point extends AppModel {
         ),
     );
 
-    function afterSave($created, $options = array()) {
-        
+    public function beforeSave($options = array()) {
+        if(isset($this->data['Point']['member_id']) && empty($this->data['Point']['member_id'])) {
+            $this->data['Point']['member_id'] = '0';
+        }
+        return parent::beforeSave($options);
     }
 
 }

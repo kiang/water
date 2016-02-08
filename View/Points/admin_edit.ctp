@@ -14,6 +14,8 @@
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.status', array(
+                'type' => 'select',
+                'options' => $this->Olc->status,
                 'label' => 'status',
                 'div' => 'form-group',
                 'class' => 'form-control',
