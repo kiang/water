@@ -50,8 +50,8 @@ if (!isset($url)) {
                     ?>
 
                     <td><?php
-                    echo $item['Tag']['name'];
-                    ?></td>
+                        echo $item['Tag']['name'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Tag']['id']), array('class' => 'dialogControl')); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Tag']['id']), array('class' => 'dialogControl')); ?>
@@ -65,8 +65,8 @@ if (!isset($url)) {
     <div id="TagsAdminIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#TagsAdminIndexTable th a, #TagsAdminIndex div.paging a').click(function() {
+        $(function () {
+            $('#TagsAdminIndexTable th a, #TagsAdminIndex div.paging a').click(function () {
                 $('#TagsAdminIndex').parent().load(this.href);
                 return false;
             });
@@ -74,19 +74,19 @@ if (!isset($url)) {
 if (!empty($op)) {
     $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $foreignModel, $foreignId));
     ?>
-                $('#TagsAdminIndexTable input.habtmSet').click(function() {
+                $('#TagsAdminIndexTable input.habtmSet').click(function () {
                     var remoteUrl = '<?php echo $remoteUrl; ?>/' + this.value + '/';
                     if (this.checked == true) {
                         remoteUrl = remoteUrl + 'on';
                     } else {
                         remoteUrl = remoteUrl + 'off';
                     }
-                    $('div#messageSet' + this.value) . load(remoteUrl);
+                    $('div#messageSet' + this.value).load(remoteUrl);
                 });
     <?php
 }
 ?>
-    });
-    //]]>
+        });
+        //]]>
     </script>
 </div>

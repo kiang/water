@@ -8,7 +8,7 @@
 
                 echo $this->data['Point']['status'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">address</div>
         <div class="col-md-9">&nbsp;<?php
@@ -16,7 +16,7 @@
 
                 echo $this->data['Point']['address'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">latitude</div>
         <div class="col-md-9">&nbsp;<?php
@@ -24,7 +24,7 @@
 
                 echo $this->data['Point']['latitude'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">longitude</div>
         <div class="col-md-9">&nbsp;<?php
@@ -32,7 +32,7 @@
 
                 echo $this->data['Point']['longitude'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">comment</div>
         <div class="col-md-9">&nbsp;<?php
@@ -40,7 +40,7 @@
 
                 echo $this->data['Point']['comment'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">created</div>
         <div class="col-md-9">&nbsp;<?php
@@ -48,7 +48,7 @@
 
                 echo $this->data['Point']['created'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">modified</div>
         <div class="col-md-9">&nbsp;<?php
@@ -56,7 +56,7 @@
 
                 echo $this->data['Point']['modified'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
     </div>
     <hr />
@@ -70,15 +70,15 @@
         </ul>
     </div>
     <div id="PointsAdminViewPanel"></div>
-<?php
-echo $this->Html->scriptBlock('
+    <?php
+    echo $this->Html->scriptBlock('
 
 ');
-?>
+    ?>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('a.PointsAdminViewControl').click(function() {
+        $(function () {
+            $('a.PointsAdminViewControl').click(function () {
                 $('#PointsAdminViewPanel').parent().load(this.href);
                 return false;
             });

@@ -33,8 +33,8 @@
                 <tr<?php echo $class; ?>>
 
                     <td><?php
-                    echo $item['Tag']['name'];
-                    ?></td>
+                        echo $item['Tag']['name'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Tag']['id']), array('class' => 'TagsIndexControl')); ?>
                     </td>
@@ -46,8 +46,8 @@
     <div id="TagsIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#TagsIndexTable th a, div.paging a, a.TagsIndexControl').click(function() {
+        $(function () {
+            $('#TagsIndexTable th a, div.paging a, a.TagsIndexControl').click(function () {
                 $('#TagsIndex').parent().load(this.href);
                 return false;
             });

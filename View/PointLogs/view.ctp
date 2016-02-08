@@ -3,16 +3,16 @@
     <div class="col-md-12">
         <div class="col-md-2">Points</div>
         <div class="col-md-9"><?php
-if (empty($this->data['Point']['id'])) {
-    echo '--';
-} else {
-    echo $this->Html->link($this->data['Point']['id'], array(
-        'controller' => 'points',
-        'action' => 'view',
-        $this->data['Point']['id']
-    ));
-}
-?></div>
+            if (empty($this->data['Point']['id'])) {
+                echo '--';
+            } else {
+                echo $this->Html->link($this->data['Point']['id'], array(
+                    'controller' => 'points',
+                    'action' => 'view',
+                    $this->data['Point']['id']
+                ));
+            }
+            ?></div>
 
         <div class="col-md-2">status</div>
         <div class="col-md-9"><?php
@@ -20,7 +20,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['status'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">comment</div>
         <div class="col-md-9"><?php
@@ -28,7 +28,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['comment'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">created</div>
         <div class="col-md-9"><?php
@@ -36,7 +36,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['created'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
     </div>
     <div class="actions">
@@ -47,8 +47,8 @@ if (empty($this->data['Point']['id'])) {
     <div id="PointLogsViewPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('a.PointLogsViewControl').click(function() {
+        $(function () {
+            $('a.PointLogsViewControl').click(function () {
                 $('#PointLogsViewPanel').parent().load(this.href);
                 return false;
             });

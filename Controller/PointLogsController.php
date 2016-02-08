@@ -8,22 +8,18 @@ class PointLogsController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
-
     function index($foreignModel = null, $foreignId = 0) {
         $foreignId = intval($foreignId);
         $foreignKeys = array();
 
         $foreignKeys = array(
-
             'Point' => 'Point_id',
-
-            );
+        );
 
 
         $scope = array();
-        if(array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
             $scope['PointLog.' . $foreignKeys[$foreignModel]] = $foreignId;
-
         } else {
             $foreignModel = '';
         }
@@ -35,33 +31,25 @@ class PointLogsController extends AppController {
         $this->set('foreignModel', $foreignModel);
     }
 
-
     function view($id = null) {
         if (!$id || !$this->data = $this->PointLog->read(null, $id)) {
             $this->Session->setFlash(__('Please do following links in the page', true));
-            $this->redirect(array('action'=>'index'));
+            $this->redirect(array('action' => 'index'));
         }
     }
-
-
-
-
 
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
         $foreignId = intval($foreignId);
         $foreignKeys = array();
 
         $foreignKeys = array(
-
             'Point' => 'Point_id',
-
         );
 
 
         $scope = array();
-        if(array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
             $scope['PointLog.' . $foreignKeys[$foreignModel]] = $foreignId;
-
         } else {
             $foreignModel = '';
         }
@@ -74,23 +62,19 @@ class PointLogsController extends AppController {
         $this->set('foreignModel', $foreignModel);
     }
 
-
     function admin_view($id = null) {
         if (!$id || !$this->data = $this->PointLog->read(null, $id)) {
             $this->Session->setFlash(__('Please do following links in the page', true));
-            $this->redirect(array('action'=>'index'));
+            $this->redirect(array('action' => 'index'));
         }
     }
-
 
     function admin_add($foreignModel = null, $foreignId = 0) {
         $foreignId = intval($foreignId);
         $foreignKeys = array(
-
             'Point' => 'Point_id',
-
         );
-        if(array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
             if (!empty($this->data)) {
                 $this->data['PointLog'][$foreignKeys[$foreignModel]] = $foreignId;
             }
@@ -101,14 +85,14 @@ class PointLogsController extends AppController {
             $this->PointLog->create();
             if ($this->PointLog->save($this->data)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action'=>'index'));
+                $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
         }
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
-        
+
         $belongsToModels = array(
             'listPoint' => array(
                 'label' => 'Points',
@@ -117,8 +101,8 @@ class PointLogsController extends AppController {
             ),
         );
 
-        foreach($belongsToModels AS $key => $model) {
-            if($foreignModel == $model['modelName']) {
+        foreach ($belongsToModels AS $key => $model) {
+            if ($foreignModel == $model['modelName']) {
                 unset($belongsToModels[$key]);
                 continue;
             }
@@ -126,7 +110,6 @@ class PointLogsController extends AppController {
         }
         $this->set('belongsToModels', $belongsToModels);
     }
-
 
     function admin_edit($id = null) {
         if (!$id && empty($this->data)) {
@@ -136,7 +119,7 @@ class PointLogsController extends AppController {
         if (!empty($this->data)) {
             if ($this->PointLog->save($this->data)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action'=>'index'));
+                $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
@@ -152,7 +135,7 @@ class PointLogsController extends AppController {
             ),
         );
 
-        foreach($belongsToModels AS $key => $model) {
+        foreach ($belongsToModels AS $key => $model) {
             $this->set($key, $this->PointLog->$model['modelName']->find('list'));
         }
         $this->set('belongsToModels', $belongsToModels);
@@ -164,8 +147,7 @@ class PointLogsController extends AppController {
         } else if ($this->PointLog->delete($id)) {
             $this->Session->setFlash(__('The data has been deleted', true));
         }
-        $this->redirect(array('action'=>'index'));
+        $this->redirect(array('action' => 'index'));
     }
-
 
 }

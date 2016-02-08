@@ -39,26 +39,26 @@
                 <tr<?php echo $class; ?>>
 
                     <td><?php
-                    echo $item['Point']['status'];
-                    ?></td>
+                        echo $item['Point']['status'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['address'];
-                    ?></td>
+                        echo $item['Point']['address'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['latitude'];
-                    ?></td>
+                        echo $item['Point']['latitude'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['longitude'];
-                    ?></td>
+                        echo $item['Point']['longitude'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['comment'];
-                    ?></td>
+                        echo $item['Point']['comment'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['created'];
-                    ?></td>
+                        echo $item['Point']['created'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['modified'];
-                    ?></td>
+                        echo $item['Point']['modified'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Point']['id']), array('class' => 'PointsIndexControl')); ?>
                     </td>
@@ -70,8 +70,8 @@
     <div id="PointsIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#PointsIndexTable th a, div.paging a, a.PointsIndexControl').click(function() {
+        $(function () {
+            $('#PointsIndexTable th a, div.paging a, a.PointsIndexControl').click(function () {
                 $('#PointsIndex').parent().load(this.href);
                 return false;
             });

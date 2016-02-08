@@ -56,26 +56,26 @@ if (!isset($url)) {
                     ?>
 
                     <td><?php
-                    echo $item['Point']['status'];
-                    ?></td>
+                        echo $item['Point']['status'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['address'];
-                    ?></td>
+                        echo $item['Point']['address'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['latitude'];
-                    ?></td>
+                        echo $item['Point']['latitude'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['longitude'];
-                    ?></td>
+                        echo $item['Point']['longitude'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['comment'];
-                    ?></td>
+                        echo $item['Point']['comment'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['created'];
-                    ?></td>
+                        echo $item['Point']['created'];
+                        ?></td>
                     <td><?php
-                    echo $item['Point']['modified'];
-                    ?></td>
+                        echo $item['Point']['modified'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Point']['id']), array('class' => 'dialogControl')); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Point']['id']), array('class' => 'dialogControl')); ?>
@@ -89,8 +89,8 @@ if (!isset($url)) {
     <div id="PointsAdminIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#PointsAdminIndexTable th a, #PointsAdminIndex div.paging a').click(function() {
+        $(function () {
+            $('#PointsAdminIndexTable th a, #PointsAdminIndex div.paging a').click(function () {
                 $('#PointsAdminIndex').parent().load(this.href);
                 return false;
             });
@@ -98,19 +98,19 @@ if (!isset($url)) {
 if (!empty($op)) {
     $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $foreignModel, $foreignId));
     ?>
-                $('#PointsAdminIndexTable input.habtmSet').click(function() {
+                $('#PointsAdminIndexTable input.habtmSet').click(function () {
                     var remoteUrl = '<?php echo $remoteUrl; ?>/' + this.value + '/';
                     if (this.checked == true) {
                         remoteUrl = remoteUrl + 'on';
                     } else {
                         remoteUrl = remoteUrl + 'off';
                     }
-                    $('div#messageSet' + this.value) . load(remoteUrl);
+                    $('div#messageSet' + this.value).load(remoteUrl);
                 });
     <?php
 }
 ?>
-    });
-    //]]>
+        });
+        //]]>
     </script>
 </div>

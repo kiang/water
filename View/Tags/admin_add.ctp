@@ -1,5 +1,5 @@
 <div id="TagsAdminAdd">
-        <?php echo $this->Form->create('Tag', array('type' => 'file')); ?>
+    <?php echo $this->Form->create('Tag', array('type' => 'file')); ?>
     <div class="Tags form">
         <fieldset>
             <legend><?php
@@ -14,7 +14,7 @@
             ?>
         </fieldset>
     </div>
-        <?php
+    <?php
     echo $this->Form->end(__('Submit', true));
     ?>
 </div>

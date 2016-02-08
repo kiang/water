@@ -8,7 +8,7 @@
 
                 echo $this->data['Tag']['name'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
     </div>
     <hr />
@@ -21,15 +21,15 @@
         </ul>
     </div>
     <div id="TagsAdminViewPanel"></div>
-<?php
-echo $this->Html->scriptBlock('
+    <?php
+    echo $this->Html->scriptBlock('
 
 ');
-?>
+    ?>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('a.TagsAdminViewControl').click(function() {
+        $(function () {
+            $('a.TagsAdminViewControl').click(function () {
                 $('#TagsAdminViewPanel').parent().load(this.href);
                 return false;
             });

@@ -42,27 +42,27 @@
                 <tr<?php echo $class; ?>>
                     <?php if (empty($scope['PointLog.Point_id'])): ?>
                         <td><?php
-                if (empty($item['Point']['id'])) {
-                    echo '--';
-                } else {
-                    echo $this->Html->link($item['Point']['id'], array(
-                        'controller' => 'points',
-                        'action' => 'view',
-                        $item['Point']['id']
-                    ));
-                }
-                        ?></td>
+                            if (empty($item['Point']['id'])) {
+                                echo '--';
+                            } else {
+                                echo $this->Html->link($item['Point']['id'], array(
+                                    'controller' => 'points',
+                                    'action' => 'view',
+                                    $item['Point']['id']
+                                ));
+                            }
+                            ?></td>
                     <?php endif; ?>
 
                     <td><?php
-                    echo $item['PointLog']['status'];
-                    ?></td>
+                        echo $item['PointLog']['status'];
+                        ?></td>
                     <td><?php
-                    echo $item['PointLog']['comment'];
-                    ?></td>
+                        echo $item['PointLog']['comment'];
+                        ?></td>
                     <td><?php
-                    echo $item['PointLog']['created'];
-                    ?></td>
+                        echo $item['PointLog']['created'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['PointLog']['id']), array('class' => 'PointLogsIndexControl')); ?>
                     </td>
@@ -74,8 +74,8 @@
     <div id="PointLogsIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#PointLogsIndexTable th a, div.paging a, a.PointLogsIndexControl').click(function() {
+        $(function () {
+            $('#PointLogsIndexTable th a, div.paging a, a.PointLogsIndexControl').click(function () {
                 $('#PointLogsIndex').parent().load(this.href);
                 return false;
             });

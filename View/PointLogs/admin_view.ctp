@@ -3,16 +3,16 @@
     <div class="col-md-12">
         <div class="col-md-2">Points</div>
         <div class="col-md-9">&nbsp;<?php
-if (empty($this->data['Point']['id'])) {
-    echo '--';
-} else {
-    echo $this->Html->link($this->data['Point']['id'], array(
-        'controller' => 'points',
-        'action' => 'view',
-        $this->data['Point']['id']
-    ));
-}
-?></div>
+            if (empty($this->data['Point']['id'])) {
+                echo '--';
+            } else {
+                echo $this->Html->link($this->data['Point']['id'], array(
+                    'controller' => 'points',
+                    'action' => 'view',
+                    $this->data['Point']['id']
+                ));
+            }
+            ?></div>
 
         <div class="col-md-2">status</div>
         <div class="col-md-9">&nbsp;<?php
@@ -20,7 +20,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['status'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">comment</div>
         <div class="col-md-9">&nbsp;<?php
@@ -28,7 +28,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['comment'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
         <div class="col-md-2">created</div>
         <div class="col-md-9">&nbsp;<?php
@@ -36,7 +36,7 @@ if (empty($this->data['Point']['id'])) {
 
                 echo $this->data['PointLog']['created'];
             }
-?>&nbsp;
+            ?>&nbsp;
         </div>
     </div>
     <hr />
@@ -47,15 +47,15 @@ if (empty($this->data['Point']['id'])) {
         </ul>
     </div>
     <div id="PointLogsAdminViewPanel"></div>
-<?php
-echo $this->Html->scriptBlock('
+    <?php
+    echo $this->Html->scriptBlock('
 
 ');
-?>
+    ?>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('a.PointLogsAdminViewControl').click(function() {
+        $(function () {
+            $('a.PointLogsAdminViewControl').click(function () {
                 $('#PointLogsAdminViewPanel').parent().load(this.href);
                 return false;
             });

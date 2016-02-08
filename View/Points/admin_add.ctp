@@ -1,5 +1,5 @@
 <div id="PointsAdminAdd">
-        <?php echo $this->Form->create('Point', array('type' => 'file')); ?>
+    <?php echo $this->Form->create('Point', array('type' => 'file')); ?>
     <div class="Points form">
         <fieldset>
             <legend><?php
@@ -46,7 +46,7 @@
             ?>
         </fieldset>
     </div>
-        <?php
+    <?php
     echo $this->Form->end(__('Submit', true));
     ?>
 </div>
