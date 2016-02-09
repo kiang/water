@@ -7,38 +7,54 @@
                 ?></legend>
             <?php
             echo $this->Form->input('Point.id');
+            echo $this->Form->input('Point.name', array(
+                'type' => 'text',
+                'label' => '名稱',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             echo $this->Form->input('Point.member_id', array(
                 'type' => 'text',
-                'label' => 'member_id',
+                'label' => '會員編號',
+                'value' => '0',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.status', array(
                 'type' => 'select',
                 'options' => $this->Olc->status,
-                'label' => 'status',
+                'label' => '狀態',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.address', array(
-                'label' => 'address',
+                'label' => '住址',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.latitude', array(
-                'label' => 'latitude',
+                'type' => '緯度(latitude)',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.longitude', array(
-                'label' => 'longitude',
+                'label' => '經度(longitude)',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Point.contact', array(
+                'label' => '聯絡人',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Point.phone', array(
+                'label' => '聯絡電話',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.comment', array(
                 'rows' => '5',
-                'cols' => '',
-                'label' => 'comment',
+                'label' => '備註',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));

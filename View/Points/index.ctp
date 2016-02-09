@@ -1,22 +1,14 @@
 <div id="PointsIndex">
-    <h2><?php echo __('Points', true); ?></h2>
-    <div class="clear actions">
-        <ul>
-        </ul>
-    </div>
-    <p>
-        <?php
+    <h2>供水點</h2>
+    <div class="btn-group pull-right"><?php
+    echo $this->Html->link('新增', '/points/add', array('class' => 'btn btn-primary'));
+    if(!isset($url)) {
         $url = array();
-
-        echo $this->Paginator->counter(array(
-            'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-        ));
-        ?></p>
-    <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    }
+    ?></div>
     <table class="table table-bordered" id="PointsIndexTable">
         <thead>
             <tr>
-
                 <th><?php echo $this->Paginator->sort('Point.status', 'status', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.address', 'address', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.latitude', 'latitude', array('url' => $url)); ?></th>
@@ -37,10 +29,6 @@
                 }
                 ?>
                 <tr<?php echo $class; ?>>
-
-                    <td><?php
-                        echo $item['Point']['member_id'];
-                        ?></td>
                     <td><?php
                         echo $item['Point']['status'];
                         ?></td>

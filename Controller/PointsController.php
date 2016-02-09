@@ -1,12 +1,20 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 class PointsController extends AppController {
 
     public $name = 'Points';
     public $paginate = array();
     public $helpers = array('Olc');
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        if (isset($this->Auth)) {
+            $this->Auth->allow(array('view', 'index', 'add'));
+        }
+    }
 
     function index($foreignModel = null, $foreignId = 0) {
         $foreignId = intval($foreignId);
@@ -58,6 +66,27 @@ class PointsController extends AppController {
         if (!$id || !$this->data = $this->Point->read(null, $id)) {
             $this->Session->setFlash(__('Please do following links in the page', true));
             $this->redirect(array('action' => 'index'));
+        }
+    }
+
+    function add() {
+        if (!empty($this->data)) {
+            $this->Point->create();
+            $dataToSave = Sanitize::clean($this->request->data, array(
+                        'encode' => false,
+            ));
+            $dataToSave['Point']['member_id'] = '0';
+            $dataToSave['Point']['status'] = '1';
+            $dataToSave['Point']['meta'] = json_encode(array(
+                'ip' => $_SERVER['REMOTE_ADDR'],
+                'session_id' => $this->Session->id(),
+                    ), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            if ($this->Point->save($dataToSave)) {
+                $this->Session->setFlash('資料已經儲存');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('資料儲存時發生錯誤');
+            }
         }
     }
 
