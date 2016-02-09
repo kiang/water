@@ -1,80 +1,90 @@
 <div id="PointsView">
-    <h3><?php echo __('View Points', true); ?></h3><hr />
+    <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3><hr />
+    <div id="mapCanvas" class="col-md-12" style="height: 300px;"></div>
     <div class="col-md-12">
-
-        <div class="col-md-2">status</div>
+        <div class="col-md-2">狀態</div>
         <div class="col-md-9"><?php
-            if ($this->data['Point']['status']) {
-
-                echo $this->data['Point']['status'];
-            }
+            echo $this->Olc->status[$this->data['Point']['status']];
             ?>&nbsp;
         </div>
-        <div class="col-md-2">address</div>
+        <div class="col-md-2">住址</div>
         <div class="col-md-9"><?php
-            if ($this->data['Point']['address']) {
-
-                echo $this->data['Point']['address'];
-            }
+            echo $this->data['Point']['address'];
             ?>&nbsp;
         </div>
-        <div class="col-md-2">latitude</div>
+        <div class="col-md-2">備註</div>
         <div class="col-md-9"><?php
-            if ($this->data['Point']['latitude']) {
-
-                echo $this->data['Point']['latitude'];
-            }
+            echo nl2br($this->data['Point']['comment']);
             ?>&nbsp;
         </div>
-        <div class="col-md-2">longitude</div>
+        <div class="col-md-2">建立時間</div>
         <div class="col-md-9"><?php
-            if ($this->data['Point']['longitude']) {
-
-                echo $this->data['Point']['longitude'];
-            }
+            echo $this->data['Point']['created'];
             ?>&nbsp;
         </div>
-        <div class="col-md-2">comment</div>
+        <div class="col-md-2">更新時間</div>
         <div class="col-md-9"><?php
-            if ($this->data['Point']['comment']) {
-
-                echo $this->data['Point']['comment'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-2">created</div>
-        <div class="col-md-9"><?php
-            if ($this->data['Point']['created']) {
-
-                echo $this->data['Point']['created'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-2">modified</div>
-        <div class="col-md-9"><?php
-            if ($this->data['Point']['modified']) {
-
-                echo $this->data['Point']['modified'];
-            }
+            echo $this->data['Point']['modified'];
             ?>&nbsp;
         </div>
     </div>
-    <div class="actions">
-        <ul>
-            <li><?php echo $this->Html->link(__('Points List', true), array('action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('View Related point_logs', true), array('controller' => 'point_logs', 'action' => 'index', 'Point', $this->data['Point']['id']), array('class' => 'PointsViewControl')); ?></li>
-            <li><?php echo $this->Html->link(__('View Related Tags', true), array('controller' => 'tags', 'action' => 'index', 'Point', $this->data['Point']['id']), array('class' => 'PointsViewControl')); ?></li>
-        </ul>
+    <div class="col-md-12 PointLogs form">
+        <h3>更新狀態</h3>
+        <?php
+        echo $this->Form->create('PointLog', array('url' => '/points/status/' . $this->data['Point']['id']));
+        echo $this->Form->input('PointLog.status', array(
+            'type' => 'select',
+            'options' => $this->Olc->status,
+            'value' => $this->data['Point']['status'],
+            'label' => '狀態',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('PointLog.comment', array(
+            'type' => 'textarea',
+            'rows' => '5',
+            'label' => '備註',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->end('更新');
+        ?>
     </div>
-    <div id="PointsViewPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
-        $(function () {
-            $('a.PointsViewControl').click(function () {
-                $('#PointsViewPanel').parent().load(this.href);
-                return false;
-            });
-        });
-        //]]>
-    </script>
+    <div class="col-md-12 PointLogs list">
+        <h3>更新記錄</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>狀態</th>
+                    <th>備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->data['PointLog'] AS $pointLog) { ?>
+                    <tr>
+                        <td><?php echo $pointLog['created']; ?></td>
+                        <td><?php echo $this->Olc->status[$pointLog['status']]; ?></td>
+                        <td><?php echo nl2br($pointLog['comment']); ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+<?php if (!empty($this->data['Point']['latitude'])) { ?>
+    <script>
+        var map, p = {lat: parseFloat('<?php echo $this->data['Point']['latitude']; ?>'), lng: parseFloat('<?php echo $this->data['Point']['longitude']; ?>')};
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                center: p,
+                zoom: 15
+            });
+            var marker = new google.maps.Marker({
+                map: map,
+                position: p
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&callback=initMap"></script>
+<?php } ?>

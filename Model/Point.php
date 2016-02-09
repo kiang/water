@@ -6,33 +6,12 @@ class Point extends AppModel {
 
     var $name = 'Point';
     var $validate = array(
-        'status' => array(
-            'numberFormat' => array(
-                'rule' => 'numeric',
-                'message' => 'Wrong format',
-                'allowEmpty' => true,
-            ),
+        'address' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
-                'message' => 'This field is required',
+                'message' => '住址必須輸入',
             ),
         ),
-        'latitude' => array(
-            'numberFormat' => array(
-                'rule' => 'numeric',
-                'message' => 'Wrong format',
-                'allowEmpty' => true,
-            ),
-        ),
-        'longitude' => array(
-            'numberFormat' => array(
-                'rule' => 'numeric',
-                'message' => 'Wrong format',
-                'allowEmpty' => true,
-            ),
-        ),
-    );
-    var $actsAs = array(
     );
     var $hasAndBelongsToMany = array(
         'Tag' => array(

@@ -34,7 +34,7 @@
                         echo $item['Point']['address'];
                         ?></td>
                     <td><?php
-                        echo $item['Point']['comment'];
+                        echo nl2br($item['Point']['comment']);
                         ?></td>
                     <td><?php
                         echo $item['Point']['modified'];
@@ -47,15 +47,4 @@
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
-    <div id="PointsIndexPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
-        $(function () {
-            $('#PointsIndexTable th a, div.paging a, a.PointsIndexControl').click(function () {
-                $('#PointsIndex').parent().load(this.href);
-                return false;
-            });
-        });
-        //]]>
-    </script>
 </div>

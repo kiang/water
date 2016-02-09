@@ -12,7 +12,7 @@ class PointsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow(array('view', 'index', 'add', 'map', 'json'));
+            $this->Auth->allow(array('view', 'index', 'add', 'map', 'json', 'status'));
         }
     }
 
@@ -66,7 +66,16 @@ class PointsController extends AppController {
     }
 
     function view($id = null) {
-        if (!$id || !$this->data = $this->Point->read(null, $id)) {
+        if (!$id || !$this->data = $this->Point->find('first', array(
+            'conditions' => array('Point.id' => $id),
+            'contain' => array(
+                'PointLog' => array(
+                    'order' => array('PointLog.created' => 'DESC'),
+                    'limit' => 5,
+                ),
+                'Tag'
+            ),
+                ))) {
             $this->Session->setFlash(__('Please do following links in the page', true));
             $this->redirect(array('action' => 'index'));
         }
@@ -76,7 +85,7 @@ class PointsController extends AppController {
         if (!empty($this->data)) {
             $this->Point->create();
             $dataToSave = Sanitize::clean($this->request->data, array(
-                        'encode' => false,
+                        'remove_html' => true,
             ));
             $dataToSave['Point']['member_id'] = '0';
             $dataToSave['Point']['status'] = '1';
@@ -85,6 +94,12 @@ class PointsController extends AppController {
                 'session_id' => $this->Session->id(),
                     ), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
             if ($this->Point->save($dataToSave)) {
+                $savedId = $this->Point->getInsertID();
+                $this->Point->PointLog->create();
+                $this->Point->PointLog->save(array('PointLog' => array(
+                        'Point_id' => $savedId,
+                        'status' => $dataToSave['Point']['status'],
+                )));
                 $this->Session->setFlash('資料已經儲存');
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -107,6 +122,22 @@ class PointsController extends AppController {
         }
         $this->response->body(json_encode($points, $jsonOptions));
         return $this->response;
+    }
+
+    public function status($pointId = null) {
+        if (!empty($pointId) && !empty($this->data)) {
+            $this->Point->PointLog->create();
+            $dataToSave = Sanitize::clean($this->request->data, array(
+                        'remove_html' => true,
+            ));
+            $this->Point->id = $dataToSave['PointLog']['Point_id'] = $pointId;
+            if ($this->Point->PointLog->save($dataToSave) && $this->Point->save(array('Point' => array(
+                            'status' => $dataToSave['PointLog']['status'],
+                )))) {
+                $this->redirect(array('action' => 'view', $pointId));
+            }
+        }
+        $this->redirect('/');
     }
 
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
