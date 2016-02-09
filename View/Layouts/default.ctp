@@ -6,6 +6,8 @@
             台南震災供水地圖::
             <?php echo $title_for_layout; ?>
         </title><?php
+        echo $this->Html->meta('description', '台南震災供水地圖 是針對 206 台南震災之後大範圍缺水情況設計，主要是希望網友能夠共同維護一個最新的供水清單');
+        echo $this->Html->meta(array('property' => 'og:image', 'content' => $this->Html->url('/img/og_image.png', true)));
         echo $this->Html->meta('icon');
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap');
