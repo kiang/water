@@ -15,10 +15,9 @@
             zoom: 10
         });
         $.getJSON('<?php echo $this->Html->url('/points/json'); ?>', {}, function (points) {
+            var markers = [];
             $.each(points, function (k, p) {
                 var marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
                     position: {lat: parseFloat(p.Point.latitude), lng: parseFloat(p.Point.longitude)},
                     data: p.Point
                 });
@@ -26,8 +25,11 @@
                 marker.addListener('click', function () {
                     location.href = '<?php echo $this->Html->url('/points/view'); ?>/' + this.data.id;
                 });
+                markers.push(marker);
             })
+            var markerCluster = new MarkerClusterer(map, markers);
         });
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&callback=initMap"></script>
+<?php echo $this->Html->script('markerclusterer'); ?>
