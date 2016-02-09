@@ -12,7 +12,7 @@ class PointsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow(array('view', 'index', 'add'));
+            $this->Auth->allow(array('view', 'index', 'add', 'map', 'json'));
         }
     }
 
@@ -56,6 +56,9 @@ class PointsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['Point']['limit'] = 20;
+        $this->paginate['Point']['order'] = array(
+            'Point.modified' => 'DESC'
+        );
         $items = $this->paginate($this->Point, $scope);
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
@@ -88,6 +91,22 @@ class PointsController extends AppController {
                 $this->Session->setFlash('資料儲存時發生錯誤');
             }
         }
+    }
+
+    public function map() {
+        
+    }
+
+    public function json() {
+        $points = $this->Point->find('all', array(
+            'fields' => array('Point.id', 'Point.address', 'Point.latitude', 'Point.longitude'),
+        ));
+        $jsonOptions = null;
+        if (isset($_GET['pretty'])) {
+            $jsonOptions = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT;
+        }
+        $this->response->body(json_encode($points, $jsonOptions));
+        return $this->response;
     }
 
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {

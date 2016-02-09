@@ -1,22 +1,20 @@
 <div id="PointsIndex">
     <h2>供水點</h2>
     <div class="btn-group pull-right"><?php
-    echo $this->Html->link('新增', '/points/add', array('class' => 'btn btn-primary'));
-    if(!isset($url)) {
-        $url = array();
-    }
-    ?></div>
+        echo $this->Html->link('地圖', '/points/map', array('class' => 'btn btn-default'));
+        echo $this->Html->link('新增', '/points/add', array('class' => 'btn btn-primary'));
+        if (!isset($url)) {
+            $url = array();
+        }
+        ?></div>
     <table class="table table-bordered" id="PointsIndexTable">
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('Point.status', 'status', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.address', 'address', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.latitude', 'latitude', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.longitude', 'longitude', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.comment', 'comment', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.created', 'created', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.modified', 'modified', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th><?php echo $this->Paginator->sort('Point.status', '狀態', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Point.address', '住址', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Point.comment', '備註', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Point.modified', '更新時間', array('url' => $url)); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -30,28 +28,19 @@
                 ?>
                 <tr<?php echo $class; ?>>
                     <td><?php
-                        echo $item['Point']['status'];
+                        echo $this->Olc->status[$item['Point']['status']];
                         ?></td>
                     <td><?php
                         echo $item['Point']['address'];
                         ?></td>
                     <td><?php
-                        echo $item['Point']['latitude'];
-                        ?></td>
-                    <td><?php
-                        echo $item['Point']['longitude'];
-                        ?></td>
-                    <td><?php
                         echo $item['Point']['comment'];
-                        ?></td>
-                    <td><?php
-                        echo $item['Point']['created'];
                         ?></td>
                     <td><?php
                         echo $item['Point']['modified'];
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Point']['id']), array('class' => 'PointsIndexControl')); ?>
+                        <?php echo $this->Html->link('檢視', array('action' => 'view', $item['Point']['id']), array('class' => 'PointsIndexControl')); ?>
                     </td>
                 </tr>
             <?php }; // End of foreach ($items as $item) {  ?>

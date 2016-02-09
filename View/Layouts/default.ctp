@@ -20,24 +20,22 @@
     <body>
         <div class="container">
             <div id="header">
-                <h1><?php echo $this->Html->link('Water Points', '/'); ?></h1>
+                <h1><?php echo $this->Html->link('台南震災供水地圖', '/'); ?></h1>
             </div>
             <div id="content">
                 <div class="btn-group">
-                    <?php if ($this->Session->read('Auth.User.id')): ?>
-                        <?php echo $this->Html->link('Points', '/admin/points', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('point_logs', '/admin/point_logs', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn')); ?>
-                    <?php else: ?>
-                        <?php echo $this->Html->link('Login', '/members/login', array('class' => 'btn')); ?>
-                    <?php endif; ?>
+                    <?php if ($this->Session->read('Auth.User.id')) { ?>
+                        <?php echo $this->Html->link('Points', '/admin/points', array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('point_logs', '/admin/point_logs', array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default')); ?>
+                    <?php }; ?>
                     <?php
                     if (!empty($actions_for_layout)) {
                         foreach ($actions_for_layout as $title => $url) {
-                            echo $this->Html->link($title, $url, array('class' => 'btn'));
+                            echo $this->Html->link($title, $url, array('class' => 'btn btn-default'));
                         }
                     }
                     ?>
@@ -45,9 +43,14 @@
 
                 <?php echo $this->Session->flash(); ?>
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
+                <div class="clearfix"></div>
             </div>
             <div id="footer">
+                <hr />
                 <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
+                <?php if (!$this->Session->read('Auth.User.id')) { ?>
+                    | <?php echo $this->Html->link('Login', '/members/login', array('class' => 'btn btn-default')); ?>
+                <?php } ?>
             </div>
         </div>
         <?php
