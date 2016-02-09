@@ -48,6 +48,7 @@
             <div id="footer">
                 <hr />
                 <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
+                | <?php echo $this->Html->link('source', 'https://github.com/kiang/water', array('target' => '_blank')); ?>
                 <?php if (!$this->Session->read('Auth.User.id')) { ?>
                     | <?php echo $this->Html->link('Login', '/members/login', array('class' => 'btn btn-default')); ?>
                 <?php } ?>
