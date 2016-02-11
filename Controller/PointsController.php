@@ -102,7 +102,7 @@ class PointsController extends AppController {
                         'status' => $dataToSave['Point']['status'],
                 )));
                 $this->Session->setFlash('資料已經儲存');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'view', $savedId));
             } else {
                 $this->Session->setFlash('資料儲存時發生錯誤');
             }
