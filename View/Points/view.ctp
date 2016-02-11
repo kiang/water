@@ -1,5 +1,14 @@
 <div id="PointsView">
     <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3><hr />
+    <?php
+    if(!empty($this->data['Tag'])) {
+        echo '類型：<div class="btn-group">';
+        foreach($this->data['Tag'] AS $tag) {
+            echo $this->Html->link($tag['name'], '/points/map/' . $tag['id'], array('class' => 'btn btn-default'));
+        }
+        echo '</div><div class="clearfix"></div>';
+    }
+    ?>
     <div id="mapCanvas" class="col-md-12" style="height: 300px;"></div>
     <div class="col-md-12">
         <div class="col-md-2">狀態</div>
