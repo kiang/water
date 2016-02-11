@@ -115,19 +115,21 @@ class PointsController extends AppController {
         $this->set('tags', $this->Point->Tag->find('list'));
     }
 
-    public function json($tagId = null) {
+    public function json($tagId = 0) {
         $conditions = array();
-        if (!empty($tagId)) {
+        $tagId = intval($tagId);
+        if ($tagId > 0) {
             $conditions['PointsTag.Tag_id'] = $tagId;
         }
         $points = $this->Point->find('all', array(
             'conditions' => $conditions,
             'fields' => array('Point.id', 'Point.address', 'Point.latitude', 'Point.longitude'),
+            'contain' => array('Tag'),
             'joins' => array(
                 0 => array(
                     'table' => 'points_tags',
                     'alias' => 'PointsTag',
-                    'type' => 'inner',
+                    'type' => 'left',
                     'conditions' => array('PointsTag.Point_id = Point.id'),
                 ),),
         ));
