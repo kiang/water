@@ -2,7 +2,12 @@
     <div class="btn-group pull-left">
         <?php
         foreach ($tags AS $k => $v) {
-            echo $this->Html->link($v, '/points/map/' . $k, array('class' => 'btn btn-default'));
+            if($tagId == $k) {
+                $class = 'btn-primary';
+            } else {
+                $class = 'btn-default';
+            }
+            echo $this->Html->link($v, '/points/map/' . $k, array('class' => 'btn ' . $class));
         }
         ?>
     </div>
