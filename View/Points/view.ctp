@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-2">備註</div>
         <div class="col-md-9"><?php
-            echo nl2br($this->data['Point']['comment']);
+            echo str_replace('\\n', '<br />', $this->data['Point']['comment']);
             ?>&nbsp;
         </div>
         <div class="col-md-2">建立時間</div>
@@ -65,7 +65,7 @@
                     <tr>
                         <td><?php echo $pointLog['created']; ?></td>
                         <td><?php echo $this->Olc->status[$pointLog['status']]; ?></td>
-                        <td><?php echo nl2br($pointLog['comment']); ?></td>
+                        <td><?php echo str_replace('\\n', '<br />', $pointLog['comment']); ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

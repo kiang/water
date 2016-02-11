@@ -10,9 +10,10 @@
     <table class="table table-bordered" id="PointsIndexTable">
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('Point.status', '狀態', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.address', '住址', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Point.comment', '備註', array('url' => $url)); ?></th>
+                <th>狀態</th>
+                <th>名稱</th>
+                <th>住址</th>
+                <th>備註</th>
                 <th><?php echo $this->Paginator->sort('Point.modified', '更新時間', array('url' => $url)); ?></th>
                 <th class="actions">操作</th>
             </tr>
@@ -31,10 +32,13 @@
                         echo $this->Olc->status[$item['Point']['status']];
                         ?></td>
                     <td><?php
+                        echo $item['Point']['name'];
+                        ?></td>
+                    <td><?php
                         echo $item['Point']['address'];
                         ?></td>
                     <td><?php
-                        echo nl2br($item['Point']['comment']);
+                        echo str_replace('\\n', '<br />', $item['Point']['comment']);
                         ?></td>
                     <td><?php
                         echo $item['Point']['modified'];
