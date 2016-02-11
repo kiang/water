@@ -60,15 +60,6 @@
         </div>
     </div>
     <hr />
-    <div class="actions">
-        <ul>
-            <li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Point.id')), null, __('Delete the item, sure?', true)); ?></li>
-            <li><?php echo $this->Html->link(__('Points List', true), array('action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('View Related point_logs', true), array('controller' => 'point_logs', 'action' => 'index', 'Point', $this->data['Point']['id']), array('class' => 'PointsAdminViewControl')); ?></li>
-            <li><?php echo $this->Html->link(__('View Related Tags', true), array('controller' => 'tags', 'action' => 'index', 'Point', $this->data['Point']['id']), array('class' => 'PointsAdminViewControl')); ?></li>
-            <li><?php echo $this->Html->link(__('Set Related Tags', true), array('controller' => 'tags', 'action' => 'index', 'Point', $this->data['Point']['id'], 'set'), array('class' => 'PointsAdminViewControl')); ?></li>
-        </ul>
-    </div>
     <div id="PointsAdminViewPanel"></div>
     <?php
     echo $this->Html->scriptBlock('
