@@ -9,6 +9,14 @@
             'div' => 'form-group',
             'class' => 'form-control',
         ));
+        echo $this->Form->input('Tag', array(
+            'type' => 'select',
+            'multiple' => 'checkbox',
+            'label' => '類型',
+            'options' => $tags,
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
         echo $this->Form->input('Point.address', array(
             'label' => '住址',
             'div' => 'form-group',

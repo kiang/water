@@ -3,7 +3,7 @@
     <div class="btn-group pull-left">
         <?php
         foreach ($tags AS $k => $v) {
-            echo $this->Html->link($v, '/points/map/' . $k, array('class' => 'btn btn-default'));
+            echo $this->Html->link($v, '/points/index/Tag/' . $k, array('class' => 'btn btn-default'));
         }
         ?>
     </div>

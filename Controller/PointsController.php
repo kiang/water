@@ -107,6 +107,7 @@ class PointsController extends AppController {
                 $this->Session->setFlash('資料儲存時發生錯誤');
             }
         }
+        $this->set('tags', $this->Point->Tag->find('list'));
     }
 
     public function map($tagId = null) {
