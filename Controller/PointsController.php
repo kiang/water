@@ -60,6 +60,7 @@ class PointsController extends AppController {
             'Point.modified' => 'DESC'
         );
         $items = $this->paginate($this->Point, $scope);
+        $this->set('tags', $this->Point->Tag->find('list'));
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
@@ -108,13 +109,26 @@ class PointsController extends AppController {
         }
     }
 
-    public function map() {
-        
+    public function map($tagId = null) {
+        $this->set('tagId', $tagId);
+        $this->set('tags', $this->Point->Tag->find('list'));
     }
 
-    public function json() {
+    public function json($tagId = null) {
+        $conditions = array();
+        if (!empty($tagId)) {
+            $conditions['PointsTag.Tag_id'] = $tagId;
+        }
         $points = $this->Point->find('all', array(
+            'conditions' => $conditions,
             'fields' => array('Point.id', 'Point.address', 'Point.latitude', 'Point.longitude'),
+            'joins' => array(
+                0 => array(
+                    'table' => 'points_tags',
+                    'alias' => 'PointsTag',
+                    'type' => 'inner',
+                    'conditions' => array('PointsTag.Point_id = Point.id'),
+                ),),
         ));
         $jsonOptions = null;
         if (isset($_GET['pretty'])) {

@@ -1,5 +1,12 @@
 <div id="PointsIndex">
     <h2>供水點</h2>
+    <div class="btn-group pull-left">
+        <?php
+        foreach ($tags AS $k => $v) {
+            echo $this->Html->link($v, '/points/map/' . $k, array('class' => 'btn btn-default'));
+        }
+        ?>
+    </div>
     <div class="btn-group pull-right"><?php
         echo $this->Html->link('地圖', '/points/map', array('class' => 'btn btn-default'));
         echo $this->Html->link('新增', '/points/add', array('class' => 'btn btn-primary'));

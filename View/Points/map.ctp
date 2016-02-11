@@ -1,4 +1,11 @@
 <div id="PointsMap">
+    <div class="btn-group pull-left">
+        <?php
+        foreach ($tags AS $k => $v) {
+            echo $this->Html->link($v, '/points/map/' . $k, array('class' => 'btn btn-default'));
+        }
+        ?>
+    </div>
     <div class="btn-group pull-right">
         <?php
         echo $this->Html->link('列表', '/points/index', array('class' => 'btn btn-default'));
@@ -14,7 +21,7 @@
             center: {lat: 22.997196, lng: 120.211813},
             zoom: 10
         });
-        $.getJSON('<?php echo $this->Html->url('/points/json'); ?>', {}, function (points) {
+        $.getJSON('<?php echo $this->Html->url('/points/json/' . $tagId); ?>', {}, function (points) {
             var markers = [];
             $.each(points, function (k, p) {
                 var marker = new google.maps.Marker({
