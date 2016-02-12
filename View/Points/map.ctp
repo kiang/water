@@ -21,12 +21,14 @@
     <div id="mapCanvas" class="col-md-12" style="height: 600px;"></div>
 </div>
 <script>
-    var map;
+    var map, baseUrl = '<?php echo $this->Html->url('/'); ?>';
     function initMap() {
         map = new google.maps.Map(document.getElementById('mapCanvas'), {
             center: {lat: 22.997196, lng: 120.211813},
             zoom: 10
         });
+        var infowindow = new google.maps.InfoWindow();
+
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -52,18 +54,22 @@
         });
         // [END region_getplaces]
 
-
-
         $.getJSON('<?php echo $this->Html->url('/points/json/' . $tagId); ?>', {}, function (points) {
             var markers = [];
             $.each(points, function (k, p) {
                 var marker = new google.maps.Marker({
                     position: {lat: parseFloat(p.Point.latitude), lng: parseFloat(p.Point.longitude)},
-                    data: p.Point
+                    data: p
                 });
 
                 marker.addListener('click', function () {
-                    location.href = '<?php echo $this->Html->url('/points/view'); ?>/' + this.data.id;
+                    var info = '<a href="' + baseUrl + 'points/view/' + this.data.Point.id + '">';
+                    info += this.data.Point.name + '(' + this.data.Point.address + ')</a><br />';
+                    for(k in this.data.Tag) {
+                        info += ' [' + this.data.Tag[k].name + '] '
+                    }
+                    infowindow.setContent(info);
+                    infowindow.open(map, this);
                 });
                 markers.push(marker);
             })
