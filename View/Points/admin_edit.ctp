@@ -63,6 +63,7 @@
             ));
             echo $this->Form->input('Point.comment', array(
                 'rows' => '5',
+                'value' => str_replace('\\n', "\n", $this->data['Point']['comment']),
                 'label' => '備註',
                 'div' => 'form-group',
                 'class' => 'form-control',
