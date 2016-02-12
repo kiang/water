@@ -46,7 +46,7 @@ if (!empty($foreignId) && !empty($foreignModel)) {
                             if (empty($item['Point']['id'])) {
                                 echo '--';
                             } else {
-                                echo $this->Html->link($item['Point']['name'], array(
+                                echo $this->Html->link("{$item['Point']['name']} ({$item['Point']['address']})", array(
                                     'controller' => 'points',
                                     'action' => 'view',
                                     $item['Point']['id']

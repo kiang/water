@@ -35,5 +35,12 @@ class Point extends AppModel {
         }
         return parent::beforeSave($options);
     }
+    
+    public function beforeDelete($cascade = true) {
+        if(!empty($this->id)) {
+            $this->PointLog->deleteAll(array('Point_id' => $this->id));
+        }
+        return parent::beforeDelete($cascade);
+    }
 
 }
