@@ -6,7 +6,7 @@ class PointLogsController extends AppController {
 
     public $name = 'PointLogs';
     public $paginate = array();
-    public $helpers = array();
+    public $helpers = array('Olc');
 
     function index($foreignModel = null, $foreignId = 0) {
         $foreignId = intval($foreignId);
@@ -26,7 +26,7 @@ class PointLogsController extends AppController {
         $this->set('scope', $scope);
         $this->paginate['PointLog']['limit'] = 20;
         $this->paginate['PointLog']['order'] = array(
-            'Point.created' => 'DESC'
+            'PointLog.created' => 'DESC'
         );
         $this->paginate['PointLog']['contain'] = array('Point');
         $items = $this->paginate($this->PointLog, $scope);
@@ -59,6 +59,10 @@ class PointLogsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['PointLog']['limit'] = 20;
+        $this->paginate['PointLog']['order'] = array(
+            'PointLog.created' => 'DESC'
+        );
+        $this->paginate['PointLog']['contain'] = array('Point');
         $items = $this->paginate($this->PointLog, $scope);
 
         $this->set('items', $items);

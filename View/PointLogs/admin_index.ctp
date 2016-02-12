@@ -56,7 +56,7 @@ if (!empty($foreignId) && !empty($foreignModel)) {
                     <?php endif; ?>
 
                     <td><?php
-                        echo $item['PointLog']['status'];
+                        echo $this->Olc->status[$item['PointLog']['status']];
                         ?></td>
                     <td><?php
                         echo $item['PointLog']['comment'];
