@@ -75,17 +75,25 @@
     ?>
 </div>
 <script>
+<?php
+if (!empty($this->data['Point']['latitude'])) {
+    echo "var initPoint = {lat: {$this->data['Point']['latitude']}, lng: {$this->data['Point']['longitude']}};";
+} else {
+    echo 'var initPoint = {lat: 22.997196, lng: 120.211813};';
+}
+?>
     var map, geocoder, marker;
     function initMap() {
+
         geocoder = new google.maps.Geocoder();
         map = new google.maps.Map(document.getElementById('mapCanvas'), {
-            center: {lat: 22.997196, lng: 120.211813},
-            zoom: 10
+            center: initPoint,
+            zoom: 16
         });
         marker = new google.maps.Marker({
             map: map,
             draggable: true,
-            position: {lat: 22.997196, lng: 120.211813}
+            position: initPoint
         });
 
         marker.addListener('dragend', function () {
