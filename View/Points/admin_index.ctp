@@ -52,7 +52,7 @@ if (!isset($url)) {
                     ?>
 
                     <td><?php
-                        echo $item['Point']['status'];
+                        echo $this->Olc->status[$item['Point']['status']];
                         ?></td>
                     <td><?php
                         echo $item['Point']['name'];
