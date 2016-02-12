@@ -25,6 +25,10 @@ class PointLogsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['PointLog']['limit'] = 20;
+        $this->paginate['PointLog']['order'] = array(
+            'Point.created' => 'DESC'
+        );
+        $this->paginate['PointLog']['contain'] = array('Point');
         $items = $this->paginate($this->PointLog, $scope);
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);

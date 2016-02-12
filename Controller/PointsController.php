@@ -199,6 +199,9 @@ class PointsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['Point']['limit'] = 20;
+        $this->paginate['Point']['order'] = array(
+            'Point.modified' => 'DESC'
+        );
         $items = $this->paginate($this->Point, $scope);
 
         if ($op == 'set' && !empty($joins[$foreignModel]) && !empty($foreignModel) && !empty($foreignId) && !empty($items)) {
