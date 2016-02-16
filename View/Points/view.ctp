@@ -1,10 +1,15 @@
 <div id="PointsView">
     <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3><hr />
     <?php
-    if(!empty($this->data['Tag'])) {
+    if ($this->data['Point']['group'] === '1') {
+        $options = $this->Olc->status;
+    } else {
+        $options = $this->Olc->status2;
+    }
+    if (!empty($this->data['Tag'])) {
         echo '類型：<div class="btn-group">';
-        foreach($this->data['Tag'] AS $tag) {
-            echo $this->Html->link($tag['name'], '/points/map/' . $tag['id'], array('class' => 'btn btn-default'));
+        foreach ($this->data['Tag'] AS $tag) {
+            echo $this->Html->link($tag['name'], '/points/map/' . $tag['group'] . '/' . $tag['id'], array('class' => 'btn btn-default'));
         }
         echo '</div><div class="clearfix"></div>';
     }
@@ -13,7 +18,7 @@
     <div class="col-md-12">
         <div class="col-md-2">狀態</div>
         <div class="col-md-9"><?php
-            echo $this->Olc->status[$this->data['Point']['status']];
+            echo $options[$this->data['Point']['status']];
             ?>&nbsp;
         </div>
         <div class="col-md-2">住址</div>
@@ -43,7 +48,7 @@
         echo $this->Form->create('PointLog', array('url' => '/points/status/' . $this->data['Point']['id']));
         echo $this->Form->input('PointLog.status', array(
             'type' => 'select',
-            'options' => $this->Olc->status,
+            'options' => $options,
             'value' => $this->data['Point']['status'],
             'label' => '狀態',
             'div' => 'form-group',
@@ -73,7 +78,7 @@
                 <?php foreach ($this->data['PointLog'] AS $pointLog) { ?>
                     <tr>
                         <td><?php echo $pointLog['created']; ?></td>
-                        <td><?php echo $this->Olc->status[$pointLog['status']]; ?></td>
+                        <td><?php echo $options[$pointLog['status']]; ?></td>
                         <td><?php echo str_replace('\\n', '<br />', $pointLog['comment']); ?></td>
                     </tr>
                 <?php } ?>

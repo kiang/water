@@ -120,7 +120,7 @@ class PointsController extends AppController {
             }
         }
         $this->set('tags', $this->Point->Tag->find('list', array(
-            'conditions' => array('Tag.group' => $groupValue)
+                    'conditions' => array('Tag.group' => $groupValue)
         )));
         $this->set('groupValue', $groupValue);
     }
@@ -132,7 +132,7 @@ class PointsController extends AppController {
         $this->set('groupValue', $groupValue);
         $this->set('tagId', $tagId);
         $this->set('tags', $this->Point->Tag->find('all', array(
-            'order' => array('Tag.group' => 'ASC'),
+                    'order' => array('Tag.group' => 'ASC'),
         )));
     }
 
@@ -142,6 +142,7 @@ class PointsController extends AppController {
         }
         $conditions = array(
             'Point.group' => $groupValue,
+            'Point.status >' => '0',
         );
         $tagId = intval($tagId);
         if ($tagId > 0) {

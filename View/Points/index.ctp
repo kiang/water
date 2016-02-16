@@ -60,25 +60,29 @@
                 ?>
                 <tr<?php echo $class; ?>>
                     <td><?php
-                        echo $this->Olc->status[$item['Point']['status']];
+                        if ($item['Point']['group'] === '1') {
+                            echo $this->Olc->status[$item['Point']['status']];
+                        } else {
+                            echo $this->Olc->status2[$item['Point']['status']];
+                        }
                         ?></td>
                     <td><?php
-                        echo $item['Point']['name'];
+                    echo $item['Point']['name'];
                         ?></td>
                     <td><?php
-                        echo $item['Point']['address'];
+                    echo $item['Point']['address'];
                         ?></td>
                     <td><?php
-                        echo str_replace('\\n', '<br />', $item['Point']['comment']);
+                    echo str_replace('\\n', '<br />', $item['Point']['comment']);
                         ?></td>
                     <td><?php
-                        echo $item['Point']['modified'];
+                    echo $item['Point']['modified'];
                         ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link('檢視', array('action' => 'view', $item['Point']['id']), array('class' => 'PointsIndexControl')); ?>
                     </td>
                 </tr>
-            <?php }; // End of foreach ($items as $item) {  ?>
+            <?php }; // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
