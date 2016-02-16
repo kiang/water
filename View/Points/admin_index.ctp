@@ -52,7 +52,11 @@ if (!isset($url)) {
                     ?>
 
                     <td><?php
-                        echo $item['Point']['group'] . '/' . $item['Point']['status'];
+                        if ($item['Point']['group'] === '1') {
+                            echo $this->Olc->groups[$item['Point']['group']] . ' / ' . $this->Olc->status[$item['Point']['status']];
+                        } else {
+                            echo $this->Olc->groups[$item['Point']['group']] . ' / ' . $this->Olc->status2[$item['Point']['status']];
+                        }
                         ?></td>
                     <td><?php
                         echo $item['Point']['name'];
@@ -70,7 +74,7 @@ if (!isset($url)) {
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Point']['id']), null, __('Delete the item, sure?', true)); ?>
                     </td>
                 </tr>
-            <?php } // End of foreach ($items as $item) {  ?>
+            <?php } // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>

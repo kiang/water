@@ -22,7 +22,7 @@ if (!isset($url)) {
                     echo '<th>&nbsp;</th>';
                 }
                 ?>
-
+                <th><?php echo $this->Paginator->sort('Tag.group', 'Group', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Tag.name', 'Name', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
@@ -49,6 +49,9 @@ if (!isset($url)) {
                     }
                     ?>
 
+                    <td><?php
+                        echo $this->Olc->groups[$item['Tag']['group']];
+                        ?></td>
                     <td><?php
                         echo $item['Tag']['name'];
                         ?></td>
