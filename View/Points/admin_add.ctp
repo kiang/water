@@ -6,6 +6,13 @@
                 echo __('Add Points', true);
                 ?></legend>
             <?php
+            echo $this->Form->input('Tag.group', array(
+                'type' => 'select',
+                'options' => $this->Olc->groups,
+                'label' => 'Group',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             echo $this->Form->input('Point.name', array(
                 'type' => 'text',
                 'label' => '名稱',

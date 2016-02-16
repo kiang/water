@@ -11,6 +11,13 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
+            echo $this->Form->input('Tag.group', array(
+                'type' => 'select',
+                'options' => $this->Olc->groups,
+                'label' => 'Group',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             ?>
         </fieldset>
     </div>

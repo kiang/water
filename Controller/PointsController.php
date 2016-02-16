@@ -82,12 +82,16 @@ class PointsController extends AppController {
         }
     }
 
-    function add() {
+    function add($groupValue = '1') {
         if (!empty($this->data)) {
+            if (!in_array($groupValue, array('1', '2'))) {
+                $groupValue = '1';
+            }
             $this->Point->create();
             $dataToSave = Sanitize::clean($this->request->data, array(
                         'remove_html' => true,
             ));
+            $dataToSave['Point']['group'] = $groupValue;
             $dataToSave['Point']['member_id'] = '0';
             $dataToSave['Point']['status'] = '1';
             $dataToSave['Point']['meta'] = json_encode(array(

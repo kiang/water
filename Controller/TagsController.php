@@ -6,7 +6,7 @@ class TagsController extends AppController {
 
     public $name = 'Tags';
     public $paginate = array();
-    public $helpers = array();
+    public $helpers = array('Olc');
 
     function index($foreignModel = null, $foreignId = 0) {
         $foreignId = intval($foreignId);
