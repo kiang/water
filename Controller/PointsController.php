@@ -16,7 +16,10 @@ class PointsController extends AppController {
         }
     }
 
-    function index($foreignModel = null, $foreignId = 0) {
+    function index($groupValue = '1', $foreignModel = null, $foreignId = 0) {
+        if (!in_array($groupValue, array('1', '2'))) {
+            $groupValue = '1';
+        }
         $foreignId = intval($foreignId);
         $foreignKeys = array();
 
@@ -26,7 +29,9 @@ class PointsController extends AppController {
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
 
-        $scope = array();
+        $scope = array(
+            'Point.group' => $groupValue,
+        );
         if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
             $scope['Point.' . $foreignKeys[$foreignModel]] = $foreignId;
 
@@ -60,7 +65,10 @@ class PointsController extends AppController {
             'Point.modified' => 'DESC'
         );
         $items = $this->paginate($this->Point, $scope);
-        $this->set('tags', $this->Point->Tag->find('list'));
+        $this->set('tags', $this->Point->Tag->find('all', array(
+                    'order' => array('Tag.group' => 'ASC'),
+        )));
+        $this->set('groupValue', $groupValue);
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
@@ -111,16 +119,30 @@ class PointsController extends AppController {
                 $this->Session->setFlash('資料儲存時發生錯誤');
             }
         }
-        $this->set('tags', $this->Point->Tag->find('list'));
+        $this->set('tags', $this->Point->Tag->find('list', array(
+            'conditions' => array('Tag.group' => $groupValue)
+        )));
+        $this->set('groupValue', $groupValue);
     }
 
-    public function map($tagId = null) {
+    public function map($groupValue = '1', $tagId = null) {
+        if (!in_array($groupValue, array('1', '2'))) {
+            $groupValue = '1';
+        }
+        $this->set('groupValue', $groupValue);
         $this->set('tagId', $tagId);
-        $this->set('tags', $this->Point->Tag->find('list'));
+        $this->set('tags', $this->Point->Tag->find('all', array(
+            'order' => array('Tag.group' => 'ASC'),
+        )));
     }
 
-    public function json($tagId = 0) {
-        $conditions = array();
+    public function json($groupValue = '1', $tagId = null) {
+        if (!in_array($groupValue, array('1', '2'))) {
+            $groupValue = '1';
+        }
+        $conditions = array(
+            'Point.group' => $groupValue,
+        );
         $tagId = intval($tagId);
         if ($tagId > 0) {
             $conditions['PointsTag.Tag_id'] = $tagId;

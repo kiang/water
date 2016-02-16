@@ -1,5 +1,5 @@
 <div id="PointsAdminAdd">
-    <?php echo $this->Form->create('Point'); ?>
+    <?php echo $this->Form->create('Point', array('url' => array($groupValue))); ?>
     <div class="Points form">
         <h3>新增供水點</h3>
         <?php
