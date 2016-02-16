@@ -32,7 +32,7 @@
     </div>
     <div class="btn-group pull-right">
         <?php
-        echo $this->Html->link('列表', '/points/index/' . $groupValue . '/' . $tagId, array('class' => 'btn btn-default'));
+        echo $this->Html->link('列表', '/points/index/' . $groupValue . '/Tag/' . $tagId, array('class' => 'btn btn-default'));
         echo $this->Html->link('新增供水點', '/points/add/1', array('class' => 'btn btn-default'));
         echo $this->Html->link('新增缺水點', '/points/add/2', array('class' => 'btn btn-default'));
         ?>
