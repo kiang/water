@@ -56,13 +56,17 @@ if (!empty($foreignId) && !empty($foreignModel)) {
                     <?php endif; ?>
 
                     <td><?php
-                        echo $this->Olc->status[$item['PointLog']['status']];
+                        if ($item['Point']['group'] === '1') {
+                            echo $this->Olc->status[$item['PointLog']['status']];
+                        } else {
+                            echo $this->Olc->status2[$item['PointLog']['status']];
+                        }
                         ?></td>
                     <td><?php
-                        echo $item['PointLog']['comment'];
+                    echo $item['PointLog']['comment'];
                         ?></td>
                     <td><?php
-                        echo $item['PointLog']['created'];
+                    echo $item['PointLog']['created'];
                         ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['PointLog']['id']), array('class' => 'dialogControl')); ?>
@@ -70,7 +74,7 @@ if (!empty($foreignId) && !empty($foreignModel)) {
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['PointLog']['id']), null, __('Delete the item, sure?', true)); ?>
                     </td>
                 </tr>
-            <?php } // End of foreach ($items as $item) {  ?>
+            <?php } // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
