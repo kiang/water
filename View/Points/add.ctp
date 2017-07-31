@@ -110,4 +110,4 @@
         });
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&callback=initMap&key=AIzaSyBpay28e5O56jgsNKsKsoocC54hNihULGc"></script>

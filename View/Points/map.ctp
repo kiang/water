@@ -97,5 +97,5 @@
         });
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&libraries=places&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&libraries=places&callback=initMap&key=AIzaSyBpay28e5O56jgsNKsKsoocC54hNihULGc"></script>
 <?php echo $this->Html->script('markerclusterer/src/markerclusterer.js'); ?>
