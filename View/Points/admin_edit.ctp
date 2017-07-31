@@ -61,6 +61,7 @@
             <div id="mapCanvas" class="col-md-12" style="height: 300px;"></div>
             <?php
             echo $this->Form->input('Point.ref_time', array(
+                'type' => 'text',
                 'label' => '發生時間',
                 'div' => 'form-group',
                 'class' => 'form-control',
@@ -140,6 +141,10 @@ if (!empty($this->data['Point']['latitude'])) {
         $('#btnCopyAddress').click(function () {
             $('#PointAddress').val($('#spanAddress').text());
             return false;
+        });
+        $('#PointRefTime').datetimepicker({
+            "dateFormat": "yy-mm-dd",
+            "timeFormat": "HH:mm"
         });
     }
 </script>
