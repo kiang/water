@@ -7,8 +7,8 @@ class Point extends AppModel {
     var $name = 'Point';
     var $validate = array(
         'address' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => '住址必須輸入',
             ),
         ),

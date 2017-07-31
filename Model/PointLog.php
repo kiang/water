@@ -12,8 +12,8 @@ class PointLog extends AppModel {
                 'message' => 'Wrong format',
                 'allowEmpty' => true,
             ),
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => 'This field is required',
             ),
         ),
