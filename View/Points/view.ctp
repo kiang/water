@@ -1,5 +1,14 @@
 <div id="PointsView">
-    <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3><hr />
+    <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3>
+    <div class="btn-group pull-right">
+        <?php
+        echo $this->Html->link('列表', '/points/index/' . $this->data['Point']['group'], array('class' => 'btn btn-default'));
+        echo $this->Html->link('地圖', '/points/map/' . $this->data['Point']['group'], array('class' => 'btn btn-default'));
+        echo $this->Html->link('新增', '/points/add/' . $this->data['Point']['group'], array('class' => 'btn btn-default'));
+        ?>
+    </div>
+
+    <hr />
     <?php
     if ($this->data['Point']['group'] === '1') {
         $options = $this->Olc->status;
@@ -29,6 +38,18 @@
         <div class="col-md-2">備註</div>
         <div class="col-md-9"><?php
             echo str_replace('\\n', '<br />', $this->data['Point']['comment']);
+            ?>&nbsp;
+        </div>
+        <div class="col-md-2">發生時間</div>
+        <div class="col-md-9"><?php
+            echo $this->data['Point']['ref_time'];
+            ?>&nbsp;
+        </div>
+        <div class="col-md-2">參考網址</div>
+        <div class="col-md-9"><?php
+            if (!empty($this->data['Point']['ref_url'])) {
+                echo $this->Html->link($this->data['Point']['ref_url'], $this->data['Point']['ref_url'], array('target' => '_blank'));
+            }
             ?>&nbsp;
         </div>
         <div class="col-md-2">建立時間</div>
