@@ -98,4 +98,4 @@
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?language=zh-TW&libraries=places&callback=initMap"></script>
-<?php echo $this->Html->script('markerclusterer'); ?>
+<?php echo $this->Html->script('markerclusterer/src/markerclusterer.js'); ?>
