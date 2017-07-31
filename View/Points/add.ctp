@@ -37,13 +37,13 @@
         </div>
         <div id="mapCanvas" class="col-md-12" style="height: 300px;"></div>
         <?php
-        echo $this->Form->input('Point.contact', array(
-            'label' => '聯絡人',
+        echo $this->Form->input('Point.ref_time', array(
+            'label' => '發生時間',
             'div' => 'form-group',
             'class' => 'form-control',
         ));
-        echo $this->Form->input('Point.phone', array(
-            'label' => '聯絡電話',
+        echo $this->Form->input('Point.ref_url', array(
+            'label' => '參考網址',
             'div' => 'form-group',
             'class' => 'form-control',
         ));
