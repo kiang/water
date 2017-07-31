@@ -4,17 +4,17 @@ class OlcHelper extends AppHelper {
 
     public $helpers = array('Html');
     public $status = array(
-        0 => '停用',
-        1 => '正常供應',
-        2 => '暫停供應',
+        0 => '關閉',
+        1 => '淹水中',
+        2 => '淹水已退',
     );
     public $status2 = array(
-        0 => '水來了',
-        1 => '缺水中',
+        0 => '有障礙物',
+        1 => '障礙物已經清除',
     );
     public $groups = array(
-        1 => '供水',
-        2 => '缺水',
+        1 => '淹水',
+        2 => '障礙物',
     );
 
 }

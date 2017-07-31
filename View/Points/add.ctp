@@ -1,7 +1,7 @@
 <div id="PointsAdminAdd">
     <?php echo $this->Form->create('Point', array('url' => array($groupValue))); ?>
     <div class="Points form">
-        <h3>新增供水點</h3>
+        <h3>新增淹水點</h3>
         <?php
         echo $this->Form->input('Point.name', array(
             'type' => 'text',
@@ -56,7 +56,7 @@
         ?>
     </div>
     <?php
-    echo $this->Form->end(__('Submit', true));
+    echo $this->Form->end('送出');
     ?>
 </div>
 <script>

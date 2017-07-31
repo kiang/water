@@ -1,39 +1,26 @@
 <div id="PointsIndex">
-    <h2>供水點</h2>
+    <h2>淹水點</h2>
     <div class="btn-group pull-left">
-        <span class="pull-left" style="margin: 8px;"> 供水： </span>
         <?php
         if (empty($foreignId) && $groupValue == '1') {
             $class = 'btn-primary';
         } else {
             $class = 'btn-default';
         }
-        echo $this->Html->link('全部', '/points/index/1', array('class' => 'btn ' . $class));
-        $latestGroup = '1';
+        echo $this->Html->link('全部', '/points/map/1', array('class' => 'btn ' . $class));
         foreach ($tags AS $tag) {
-            if ($latestGroup !== $tag['Tag']['group']) {
-                echo '<span class="pull-left" style="margin: 8px;"> &nbsp; 缺水： </span>';
-                if (empty($foreignId) && $groupValue == '2') {
-                    $class = 'btn-primary';
-                } else {
-                    $class = 'btn-default';
-                }
-                echo $this->Html->link('全部', '/points/index/2', array('class' => 'btn ' . $class));
-            }
             if ($foreignId == $tag['Tag']['id']) {
                 $class = 'btn-primary';
             } else {
                 $class = 'btn-default';
             }
-            echo $this->Html->link($tag['Tag']['name'], '/points/index/' . $tag['Tag']['group'] . '/Tag/' . $tag['Tag']['id'], array('class' => 'btn ' . $class));
-            $latestGroup = $tag['Tag']['group'];
+            echo $this->Html->link($tag['Tag']['name'], '/points/map/' . $tag['Tag']['group'] . '/' . $tag['Tag']['id'], array('class' => 'btn ' . $class));
         }
         ?>
     </div>
     <div class="btn-group pull-right"><?php
         echo $this->Html->link('地圖', '/points/map/' . $groupValue . '/' . $foreignId, array('class' => 'btn btn-default'));
-        echo $this->Html->link('新增供水點', '/points/add/1', array('class' => 'btn btn-default'));
-        echo $this->Html->link('新增缺水點', '/points/add/2', array('class' => 'btn btn-default'));
+        echo $this->Html->link('新增', '/points/add/1', array('class' => 'btn btn-default'));
         if (!isset($url)) {
             $url = array();
         }
