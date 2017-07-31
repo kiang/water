@@ -40,11 +40,13 @@
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.latitude', array(
-                'type' => '緯度(latitude)',
+                'type' => 'text',
+                'label' => '緯度(latitude)',
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Point.longitude', array(
+                'type' => 'text',
                 'label' => '經度(longitude)',
                 'div' => 'form-group',
                 'class' => 'form-control',
