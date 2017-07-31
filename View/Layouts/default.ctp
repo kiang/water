@@ -3,10 +3,17 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            台南淹水地圖::
-            <?php echo $title_for_layout; ?>
+            <?php
+            if(!empty($title_for_layout)) {
+                echo $title_for_layout . ' @ ';
+            }
+            ?>台南淹水地圖
         </title><?php
-        echo $this->Html->meta('description', '台南淹水地圖 希望蒐集網路上回報的淹水情況');
+        if(!empty($meta_for_layout)) {
+            echo $this->Html->meta('description', $meta_for_layout);
+        } else {
+            echo $this->Html->meta('description', '台南淹水地圖 希望蒐集網路上回報的淹水情況');
+        }
         echo $this->Html->meta(array('property' => 'og:image', 'content' => $this->Html->url('/img/og_image.png', true)));
         echo $this->Html->meta('icon');
         echo $this->Html->css('jquery-ui');

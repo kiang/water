@@ -88,6 +88,8 @@ class PointsController extends AppController {
             $this->Session->setFlash(__('Please do following links in the page', true));
             $this->redirect(array('action' => 'index'));
         }
+        $this->set('title_for_layout', $this->data['Point']['name']);
+        $this->set('meta_for_layout', $this->data['Point']['address'] . ' | ' . $this->data['Point']['comment']);
     }
 
     function add($groupValue = '1') {
