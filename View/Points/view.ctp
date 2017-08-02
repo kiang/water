@@ -1,5 +1,5 @@
 <div id="PointsView">
-    <h3>供水點::<?php echo $this->data['Point']['name']; ?></h3>
+    <h3><?php echo $this->data['Point']['name']; ?></h3>
     <div class="btn-group pull-right">
         <?php
         echo $this->Html->link('列表', '/points/index/' . $this->data['Point']['group'], array('class' => 'btn btn-default'));
