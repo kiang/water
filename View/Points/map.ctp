@@ -74,6 +74,10 @@
                     for (k in this.data.Tag) {
                         info += ' [' + this.data.Tag[k].name + '] '
                     }
+                    if(this.data.Point.ref_url !== '') {
+                        info += ' <a href="' + this.data.Point.ref_url + '" target="_blank">[參考網址]</a> '
+                    }
+                    info += '<br />發生時間：' + this.data.Point.ref_time;
                     infowindow.setContent(info);
                     infowindow.open(map, this);
                 });

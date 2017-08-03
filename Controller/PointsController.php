@@ -153,7 +153,7 @@ class PointsController extends AppController {
         $points = $this->Point->find('all', array(
             'conditions' => $conditions,
             'fields' => array('Point.id', 'Point.name', 'Point.address',
-                'Point.latitude', 'Point.longitude'),
+                'Point.latitude', 'Point.longitude', 'Point.ref_url', 'Point.ref_time'),
             'contain' => array('Tag'),
             'joins' => array(
                 0 => array(

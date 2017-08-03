@@ -32,6 +32,7 @@
                 <th>名稱</th>
                 <th>住址</th>
                 <th>備註</th>
+                <th><?php echo $this->Paginator->sort('Point.ref_time', '發生時間', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.modified', '更新時間', array('url' => $url)); ?></th>
                 <th class="actions">操作</th>
             </tr>
@@ -61,6 +62,9 @@
                         ?></td>
                     <td><?php
                     echo str_replace('\\n', '<br />', $item['Point']['comment']);
+                        ?></td>
+                    <td><?php
+                    echo $item['Point']['ref_time'];
                         ?></td>
                     <td><?php
                     echo $item['Point']['modified'];

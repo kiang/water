@@ -25,6 +25,7 @@ if (!isset($url)) {
                 <th><?php echo $this->Paginator->sort('Point.status', 'status', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.name', 'name', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.address', 'address', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Point.ref_time', 'ref_time', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Point.modified', 'modified', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
@@ -63,6 +64,9 @@ if (!isset($url)) {
                         ?></td>
                     <td><?php
                         echo $item['Point']['address'];
+                        ?></td>
+                    <td><?php
+                        echo $item['Point']['ref_time'];
                         ?></td>
                     <td><?php
                         echo $item['Point']['modified'];
