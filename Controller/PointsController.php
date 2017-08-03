@@ -139,6 +139,7 @@ class PointsController extends AppController {
     }
 
     public function json($groupValue = '1', $tagId = null) {
+        header('Access-Control-Allow-Origin: *');
         if (!in_array($groupValue, array('1', '2'))) {
             $groupValue = '1';
         }
